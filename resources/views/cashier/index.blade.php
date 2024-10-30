@@ -38,7 +38,7 @@
               <img src="{{ asset('assets/search.svg') }}" alt="Search Icon" class="w-5 h-5">  
             </div>
             <button id="dropdownButton" class="bg-white rounded-3xl shadow text-md w-full h-16 py-4 pl-16 text-left focus:outline-none">
-              Filter Items...
+              {{ __('messages.filter_items') }}
             </button>
             <div id="dropdownMenu" class="absolute left-0 z-10 hidden bg-white shadow-lg rounded-3xl mt-1 w-full max-h-60 overflow-y-auto">
               <input type="text" id="filterInput" placeholder="Type to filter..." class="p-2 w-full rounded-3xl border border-gray-300 focus:outline-none focus:ring focus:ring-blue-500" onkeyup="filterItems()">
@@ -197,12 +197,12 @@
             <form action="{{ route('cashier.submitPayment') }}" method="POST">
             @csrf
               <div class="flex mb-3 text-lg font-semibold text-blue-gray-700">
-                <div>TOTAL</div>
+                <div class="uppercase">{{ __('messages.total') }}</div>
                 <div class="text-right w-full"><span id="exTotal">LKR. {{ number_format($total, 2) }}</span><span id="total" style="display:none;"></span></div>
               </div>
               <div class="mb-3 text-blue-gray-700 px-3 pt-2 pb-3 rounded-lg bg-blue-gray-50">
                 <div class="flex text-lg font-semibold">
-                  <div class="flex-grow text-left">CASH</div>
+                  <div class="flex-grow text-left uppercase">{{ __('messages.cash') }}</div>
                   <div class="flex text-right">
                     <div class="mr-2">LKR. </div>
                     <input onkeyup="updateCash(this.value)" id="cashPayment" name="cash" type="number" class="w-28 text-right bg-white shadow rounded-lg focus:bg-white focus:shadow-lg px-2 focus:outline-none" required>
@@ -219,18 +219,18 @@
                 </div>
               </div>
               <div id="changeValue" style="display:none;" class="flex mb-3 text-lg font-semibold bg-cyan-50 text-blue-gray-700 rounded-lg py-2 px-3">
-                <div class="text-cyan-800">CHANGE</div>
+                <div class="text-cyan-800 uppercase">{{ __('messages.change') }}</div>
                 <div id="changeAmount" class="text-right flex-grow text-cyan-600">
                 </div>
               </div>
 
               <div id="dueValue" style="display:none;" class="flex mb-3 text-lg font-semibold bg-pink-100 text-blue-gray-700 rounded-lg py-2 px-3">
-                <div class="text-pink-800">DUE</div>
+                <div class="text-pink-800 uppercase">{{ __('messages.due') }}</div>
                 <div id="dueAmount" class="text-right flex-grow text-pink-600">
                 </div>
               </div>
-              <button type="submit" disabled class="submitbtn disabled:opacity-50 bg-gray-800 text-white rounded-2xl text-lg w-full py-3 focus:outline-none">
-                SUBMIT
+              <button type="submit" disabled class="submitbtn uppercase disabled:opacity-50 bg-gray-800 text-white rounded-2xl text-lg w-full py-3 focus:outline-none">
+                {{ __('messages.submit') }}
               </button>
             </form>
           </div>

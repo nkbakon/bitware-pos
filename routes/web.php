@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\AuthController;
 use \App\Http\Controllers\CartController;
 use \App\Http\Controllers\ItemController;
+use \App\Http\Controllers\LanguageController;
 use \App\Http\Controllers\TransactionController;
 use \App\Http\Controllers\UserController;
 
@@ -60,4 +61,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::put('/profile', [AuthController::class, 'update'])->name('password.update');
 
     Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index'])->middleware(['auth']);
+    Route::get('lang/{lang}', [LanguageController:: class, 'switchLang'])->name('lang.switch');
 });

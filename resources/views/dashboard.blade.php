@@ -1,5 +1,37 @@
 @extends('layouts.app')
 @section('bodycontent')
+<div class="flex justify-end mr-4 mt-2">
+    <button id="states-button" data-dropdown-toggle="dropdown-states" class="mt-4 flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-500 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600" type="button">  
+      @if(Config::get('languages')[App::getLocale()] == 'English')
+      <img src="{{ asset('assets/uk.png') }}" alt="En Icon" class="w-5 h-5 mr-2">
+      @else
+      <img src="{{ asset('assets/lk.png') }}" alt="Sin Icon" class="w-5 h-5 mr-2"> 
+      @endif 
+      {{ Config::get('languages')[App::getLocale()] }} <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+      </svg>
+    </button>
+    <div id="dropdown-states" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+      <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="states-button">
+        @foreach (Config::get('languages') as $lang => $language)
+          @if ($lang != App::getLocale())  
+            <li>
+              <a href="{{ route('lang.switch', $lang) }}" class="inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
+                <div class="inline-flex items-center">
+                  @if($language == 'English')
+                  <img src="{{ asset('assets/uk1.png') }}" alt="En Icon" class="w-5 h-5 mr-2">
+                  @else
+                  <img src="{{ asset('assets/lk1.png') }}" alt="Sin Icon" class="w-5 h-5 mr-2">
+                  @endif
+                  {{$language}}
+                </div>
+              </a>
+            </li>
+          @endif
+        @endforeach
+      </ul>
+    </div>
+</div>
 <h1 class="text-center font-bold mt-2 text-pink-600 uppercase">Bitware POS <br>
 <div class="py-12 ml-4 md:ml-0">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -9,7 +41,7 @@
                   <div class="justify-center inline-flex bg-gray-200 rounded-2xl overflow-hidden shadow-lg" style="width:320px; height:128px;">
                     <div class="px-6 py-4 text-center">
                       <p class="text-gray-500">
-                        Bank Balance
+                        {{ __('messages.bank_balance') }}
                       </p>
                       <div class="font-bold text-5xl text-gray-700">
                         ${{ number_format(App\Models\Bank::sum('balance'), 2) }}
@@ -19,13 +51,13 @@
                   </div>
                 </a>
             </div><br>
-            <h1 class="text-gray-500 text-lg font-semibold">This Month</h1><br>
+            <h1 class="text-gray-500 text-lg font-semibold">{{ __('messages.this_month') }}</h1><br>
             <div class="md:flex md:space-x-40">
                 <a href="{{ route('transactions.index') }}">
                   <div class="justify-center inline-flex bg-gray-200 rounded-2xl overflow-hidden shadow-lg" style="width:320px; height:128px;">
                     <div class="px-6 py-4 text-center">                        
                       <p class="text-gray-500">
-                        Income
+                        {{ __('messages.income') }}
                       </p>
                       <div class="font-bold text-5xl text-green-500">${{ number_format(App\Models\Transaction::whereMonth('created_at', now())->where('type', 1)->sum('amount'), 2) }}</div>
                       <span class="text-gray-500 text-sm">(in USD)</span>
@@ -36,7 +68,7 @@
                   <div class="justify-center inline-flex bg-gray-200 rounded-2xl overflow-hidden shadow-lg" style="width:320px; height:128px;">
                     <div class="px-6 py-4 text-center">                      
                       <p class="text-gray-500">
-                          Expense
+                        {{ __('messages.expense') }}
                       </p>
                       <div class="font-bold text-5xl text-red-500">${{ number_format(App\Models\Transaction::whereMonth('created_at', now())->where('type', 2)->sum('amount'), 2) }}</div>
                       <span class="text-gray-500 text-sm">(in USD)</span>
