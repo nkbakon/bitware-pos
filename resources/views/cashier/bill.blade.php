@@ -196,7 +196,7 @@
         </p>
     </section>
     <footer style="text-align:center">
-        <p>Bitware POS by Bitware Global Company</p>
+        <p>Restaurant POS by Bitware Global Company</p>
         <p>www.bitware.global</p>
     </footer>
 </body>

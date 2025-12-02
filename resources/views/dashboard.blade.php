@@ -32,7 +32,7 @@
       </ul>
     </div>
 </div>
-<h1 class="text-center font-bold mt-2 text-pink-600 uppercase">Bitware POS <br>
+<h1 class="text-center font-bold mt-2 text-pink-600 uppercase">Restaurant POS <br>
 <div class="py-12 ml-4 md:ml-0">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg sm:px-24 lg:px-26">
@@ -44,9 +44,9 @@
                         {{ __('messages.bank_balance') }}
                       </p>
                       <div class="font-bold text-5xl text-gray-700">
-                        ${{ number_format(App\Models\Bank::sum('balance'), 2) }}
+                        Rs.{{ number_format(App\Models\Bank::sum('balance'), 2) }}
                       </div>  
-                      <span class="text-gray-500 text-sm">(in USD)</span>                        
+                      <span class="text-gray-500 text-sm">(in LKR)</span>                        
                     </div>
                   </div>
                 </a>
@@ -59,8 +59,8 @@
                       <p class="text-gray-500">
                         {{ __('messages.income') }}
                       </p>
-                      <div class="font-bold text-5xl text-green-500">${{ number_format(App\Models\Transaction::whereMonth('created_at', now())->where('type', 1)->sum('amount'), 2) }}</div>
-                      <span class="text-gray-500 text-sm">(in USD)</span>
+                      <div class="font-bold text-5xl text-green-500">Rs.{{ number_format(App\Models\Transaction::whereMonth('created_at', now())->where('type', 1)->sum('amount'), 2) }}</div>
+                      <span class="text-gray-500 text-sm">(in LKR)</span>
                     </div>
                   </div>
                 </a>
@@ -70,8 +70,8 @@
                       <p class="text-gray-500">
                         {{ __('messages.expense') }}
                       </p>
-                      <div class="font-bold text-5xl text-red-500">${{ number_format(App\Models\Transaction::whereMonth('created_at', now())->where('type', 2)->sum('amount'), 2) }}</div>
-                      <span class="text-gray-500 text-sm">(in USD)</span>
+                      <div class="font-bold text-5xl text-red-500">Rs.{{ number_format(App\Models\Transaction::whereMonth('created_at', now())->where('type', 2)->sum('amount'), 2) }}</div>
+                      <span class="text-gray-500 text-sm">(in LKR)</span>
                     </div>
                   </div>
                 </a>
@@ -130,7 +130,7 @@
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
       datasets: [
         {
-          label: "# income in usd",
+          label: "# income in lkr",
           tension: 0.4,
           borderWidth: 0,
           borderRadius: 4,
@@ -206,7 +206,7 @@
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
       datasets: [
         {
-          label: "# expense in usd",
+          label: "# expense in lkr",
           tension: 0.4,
           borderWidth: 0,
           borderRadius: 4,
@@ -292,7 +292,7 @@
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
       datasets: [
         {
-          label: "# income in usd",
+          label: "# income in lkr",
           tension: 0.4,
           borderWidth: 0,
           pointRadius: 0,
@@ -304,7 +304,7 @@
           maxBarThickness: 6,
         },
         {
-          label: "# expense in usd",
+          label: "# expense in lkr",
           tension: 0.4,
           borderWidth: 0,
           pointRadius: 0,

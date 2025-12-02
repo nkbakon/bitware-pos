@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>Bitware POS - Login</title>
+        <title>Restaurant POS - Login</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('assets/logo.png') }}">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
         <script src="https://cdn.tailwindcss.com"></script>

@@ -44,4 +44,22 @@ class ItemController extends Controller
         }
         return redirect()->route('items.index')->with('delete', 'Item create faild, try again.');
     }
+
+    public function destroy(Request $request)
+    {
+        $item = Item::find($request->data_id);
+        if($item)
+        {
+            if($item->image != null){
+                $image = $item->image;
+                Storage::disk('public')->delete($image);
+            }
+            $item->delete();
+            return redirect()->route('items.index')->with('delete', 'Item deleted successfully.');
+        }
+        else
+        {
+            return redirect()->route('items.index')->with('delete', 'No item found!.');
+        }    
+    }
 }

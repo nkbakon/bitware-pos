@@ -76,7 +76,7 @@ th{
     <h2 style="text-align: right;">Total (USD): {{ $transaction->amount }}</h2><br>
     <h2 style="text-align: right;">.............................................</h2>
     <br>
-    <p style="text-align: right;">Bitware POS Company <br>
+    <p style="text-align: right;">Restaurant POS Company <br>
     </p>
 </body>
 </html>
